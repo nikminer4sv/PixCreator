@@ -1,0 +1,11 @@
+<div id="paint-area">
+    <canvas 
+    id="paint-layer" 
+    #paintlayer 
+    width="900" 
+    height="900" 
+    (document:mousedown)="onMouseDown($event)"
+    (document:mouseup)="onMouseUp($event)"
+    (document:mousemove)="onMouseMove($event)"
+    ></canvas>
+</div>
