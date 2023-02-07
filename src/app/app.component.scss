@@ -1,3 +1,10 @@
 .container-fluid {
     background-color: #A0A0A0;
 }
+
+#toolbar {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translate(0, -50%);
+}

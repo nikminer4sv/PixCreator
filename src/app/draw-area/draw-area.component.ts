@@ -1,5 +1,7 @@
 import { core } from '@angular/compiler';
 import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { ColorService } from '../services/color.service';
 
 @Component({
   selector: 'app-draw-area',
@@ -13,6 +15,7 @@ export class DrawAreaComponent implements OnInit {
   private ctx: CanvasRenderingContext2D;
   private mouseCondition: boolean = false;
   private hoverColor: string = "rgba(192,192,192,0.1)";
+  private color: BehaviorSubject<string>;
 
   ngOnInit(): void {
     let ctx = this.paintLayer.nativeElement.getContext('2d');
@@ -21,13 +24,18 @@ export class DrawAreaComponent implements OnInit {
     } else {
       console.log("canvas error");
     }
+
+    this.color = this.colorService.getColor();
+  }
+
+  constructor(private colorService: ColorService) {
   }
 
   private currentCellColor: string;
   onMouseDown(e: any) {
     if (e.target.id === "paint-layer") {
       this.mouseCondition = true;
-      this.currentCellColor = this.randomColor();
+      this.color.subscribe(color => this.currentCellColor = color);
       let coords: Coords = this.calculateRectangleCoords(e.offsetX, e.offsetY);
       this.drawRectangle(coords.x, coords.y, 50, 50, this.currentCellColor)
     }
@@ -39,15 +47,21 @@ export class DrawAreaComponent implements OnInit {
     if (e.target.id === "paint-layer") {
       let coords: Coords = this.calculateRectangleCoords(e.offsetX, e.offsetY);
       if (this.currentXCell != coords.x || this.currentYCell != coords.y) {
+
         this.drawRectangle(this.currentXCell, this.currentYCell, 50, 50, this.currentCellColor, true);
+
         this.currentXCell = coords.x;
         this.currentYCell = coords.y;
+
         let data = this.ctx.getImageData(e.offsetX, e.offsetY, 1, 1).data;
         this.currentCellColor = `rgba(${data[0]}, ${data[1]}, ${data[2]}, ${data[3]})`;
+
         this.drawRectangle(coords.x, coords.y, 50, 50, this.hoverColor)
+
         if (this.mouseCondition == true) {
           this.onMouseDown(e);
         }
+
       }
     }
   }
@@ -57,7 +71,7 @@ export class DrawAreaComponent implements OnInit {
   }
 
   fillMap(color: string) {
-    this.drawRectangle(0,0,900,900, color);
+    this.drawRectangle(0, 0, 900, 900, color);
   }
 
   randomInt(max: number): number {
