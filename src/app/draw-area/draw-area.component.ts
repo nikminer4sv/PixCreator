@@ -1,7 +1,10 @@
 import { core } from '@angular/compiler';
-import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { Component, OnInit, OnDestroy, ElementRef, ViewChild } from '@angular/core';
+import { BehaviorSubject, Observable, Subscription } from 'rxjs';
 import { ColorService } from '../services/color.service';
+import { DrawAreaService } from '../services/draw-area.service';
+import { ToolService } from '../services/tool.service';
+import { calculateRectangleCoords, Coords, drawRectangle } from '../utils/canvas-utils';
 
 @Component({
   selector: 'app-draw-area',
@@ -12,56 +15,49 @@ import { ColorService } from '../services/color.service';
 export class DrawAreaComponent implements OnInit {
 
   @ViewChild('paintlayer', { static: true }) paintLayer: ElementRef<HTMLCanvasElement>;  
+  @ViewChild('hoverlayer', { static: true }) hoverLayer: ElementRef<HTMLCanvasElement>;  
   private ctx: CanvasRenderingContext2D;
+  private hoverCtx: CanvasRenderingContext2D;
   private mouseCondition: boolean = false;
   private hoverColor: string = "rgba(192,192,192,0.1)";
-  private color: BehaviorSubject<string>;
 
   ngOnInit(): void {
     let ctx = this.paintLayer.nativeElement.getContext('2d');
-    if (ctx != null) {
+    let hoverCtx = this.hoverLayer.nativeElement.getContext('2d');
+    if (ctx != null && hoverCtx != null) {
       this.ctx = ctx;
+      this.hoverCtx = hoverCtx;
+      this.drawAreaService.context = ctx;
     } else {
       console.log("canvas error");
     }
-
-    this.color = this.colorService.getColor();
   }
 
-  constructor(private colorService: ColorService) {
-  }
+  constructor(
+    private drawAreaService: DrawAreaService,
+    private toolService: ToolService
+  ) {}
 
-  private currentCellColor: string;
   onMouseDown(e: any) {
-    if (e.target.id === "paint-layer") {
+    if (e.target.id === "hover-layer") {
       this.mouseCondition = true;
-      this.color.subscribe(color => this.currentCellColor = color);
-      let coords: Coords = this.calculateRectangleCoords(e.offsetX, e.offsetY);
-      this.drawRectangle(coords.x, coords.y, 50, 50, this.currentCellColor)
+      this.toolService.execute(e);
     }
   }
 
   private currentXCell: number;
   private currentYCell: number;
   onMouseMove(e: any) {
-    if (e.target.id === "paint-layer") {
-      let coords: Coords = this.calculateRectangleCoords(e.offsetX, e.offsetY);
+    if (e.target.id === "hover-layer") {
+      let coords: Coords = calculateRectangleCoords(e.offsetX, e.offsetY);
       if (this.currentXCell != coords.x || this.currentYCell != coords.y) {
-
-        this.drawRectangle(this.currentXCell, this.currentYCell, 50, 50, this.currentCellColor, true);
-
         this.currentXCell = coords.x;
         this.currentYCell = coords.y;
-
-        let data = this.ctx.getImageData(e.offsetX, e.offsetY, 1, 1).data;
-        this.currentCellColor = `rgba(${data[0]}, ${data[1]}, ${data[2]}, ${data[3]})`;
-
-        this.drawRectangle(coords.x, coords.y, 50, 50, this.hoverColor)
-
+        this.hoverCtx.clearRect(0, 0, 900, 900);
+        drawRectangle(this.hoverCtx, this.currentXCell, this.currentYCell, 50, 50, this.hoverColor, true);
         if (this.mouseCondition == true) {
           this.onMouseDown(e);
         }
-
       }
     }
   }
@@ -71,7 +67,7 @@ export class DrawAreaComponent implements OnInit {
   }
 
   fillMap(color: string) {
-    this.drawRectangle(0, 0, 900, 900, color);
+    drawRectangle(this.ctx, 0, 0, 900, 900, color);
   }
 
   randomInt(max: number): number {
@@ -81,27 +77,4 @@ export class DrawAreaComponent implements OnInit {
   randomColor(): string {
     return `rgb(${this.randomInt(256)}, ${this.randomInt(256)}, ${this.randomInt(256)})`
   }
-
-  drawRectangle(x: number, y: number, width: number, height: number, color: string, clearBeforePainting: boolean = false) {
-    this.ctx.beginPath();
-    this.ctx.fillStyle = color;
-    if (clearBeforePainting)
-      this.ctx.clearRect(x, y, width, height);
-    this.ctx.rect(x, y, width, height);
-    this.ctx.fill();
-    this.ctx.closePath();
-  }
-
-  calculateRectangleCoords(x: number, y: number): Coords {
-    return {
-      x: x - x % 50, 
-      y: y - y % 50
-    };
-  }
-
-}
-
-interface Coords {
-  x: number,
-  y: number
 }

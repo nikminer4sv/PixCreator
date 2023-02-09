@@ -1,11 +1,20 @@
-<div id="paint-area">
+<div id="paint-area" style="position: relative">
+    <canvas 
+    id="hover-layer" 
+    #hoverlayer 
+    width="900" 
+    height="900" 
+    (document:mousemove)="onMouseMove($event)"
+    (document:mousedown)="onMouseDown($event)"
+    (document:mouseup)="onMouseUp($event)"
+    style="position: absolute; top: 0; left: 0;z-index: 2;background-color: transparent;"
+    ></canvas>
+
     <canvas 
     id="paint-layer" 
     #paintlayer 
     width="900" 
-    height="900" 
-    (document:mousedown)="onMouseDown($event)"
-    (document:mouseup)="onMouseUp($event)"
-    (document:mousemove)="onMouseMove($event)"
+    height="900"
+    style="position: absolute; top: 0; left: 0;z-index: 1;"
     ></canvas>
 </div>

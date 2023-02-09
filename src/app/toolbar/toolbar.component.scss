@@ -1,6 +1,14 @@
 #toolbar {
-    display: flex;
     height: 750px;
     width: 300px;
     background-color: black;
+}
+
+#toolbar * {
+    margin-bottom: 10px;
+}
+
+button {
+    border-radius: 0;
+    font-size: 30px;
 }

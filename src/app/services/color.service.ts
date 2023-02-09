@@ -1,20 +1,20 @@
 import { Injectable } from '@angular/core';
-import { Observable, of, BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ColorService {
 
-  private currentColor = new BehaviorSubject("white");
+  private _color = "white"
   constructor() { }
 
-  setColor(color: string) {
-    this.currentColor.next(color);
+  set color(color: string) {
+    this._color = color;
   }
 
-  getColor(): BehaviorSubject<string> {
-    return this.currentColor;
+  get color(): string{
+    return this._color;
   }
 
 }
