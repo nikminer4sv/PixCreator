@@ -1,4 +1,4 @@
 <div id="toolbar" class="d-flex flex-column">
     <input (colorPickerChange)="changeColor($event)" [(colorPicker)]="color" [style.background]="color" style="height: 200px;width: 100%;"/>
-    <button class="btn btn-warning" *ngFor="let item of toolsArray" (click)="this.setToolAction(item.action)">{{item.title}}</button>
+    <button class="btn btn-warning" *ngFor="let item of toolsArray" (click)="this.setTool(item)">{{item.title}}</button>
 </div>

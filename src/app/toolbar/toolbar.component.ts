@@ -1,36 +1,37 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { ColorService } from '../services/color.service';
 import { ToolService } from '../services/tool.service';
-import { ITool } from './tool';
-import { IToolFactory, ToolFactory } from './tool-factory';
+import { BaseTool } from './tools/base-tool';
+import { ToolDependencies } from './tools/tool-dependencies';
+import { ToolFactory } from './tools/tool-factory';
 
 @Component({
   selector: 'app-toolbar',
   templateUrl: './toolbar.component.html',
-  styleUrls: ['./toolbar.component.scss']
+  styleUrls: ['./toolbar.component.scss'],
 })
 export class ToolbarComponent implements OnInit {
 
   @Input() color: string = "white";
-  toolsArray: ITool[] = [];
+  toolsArray: BaseTool[] = [];
 
   constructor(
-    private colorService: ColorService,
-    private toolService: ToolService
+    private deps: ToolDependencies,
+    private toolService: ToolService,
   ) { }
 
   ngOnInit(): void {
-    this.colorService.color = this.color;
-    let toolFactory: IToolFactory = new ToolFactory();
+    this.deps.colorService.color = this.color;
+
+    let toolFactory: ToolFactory = new ToolFactory(this.deps);
     this.toolsArray = toolFactory.getToolsArray();
   }
 
   changeColor(e: any) {
-    this.colorService.color = this.color;
+    this.deps.colorService.color = this.color;
   }
 
-  setToolAction(toolAction: Function) {
-    this.toolService.setAction(toolAction);
+  setTool(tool: BaseTool) {
+    this.toolService.setAction(tool);
   }
 
 }

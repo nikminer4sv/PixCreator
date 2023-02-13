@@ -1,32 +1,23 @@
 import { Injectable } from '@angular/core';
-import { ColorService } from './color.service';
-import { DrawAreaService } from './draw-area.service';
-
-@Injectable()
-export class ToolDependecies {
-  constructor(
-    public colorService: ColorService,
-  ) { }
-}
-
+import { BaseTool } from '../toolbar/tools/base-tool';
+import { ToolDependencies } from '../toolbar/tools/tool-dependencies';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ToolService {
 
-  private action: Function = () => console.log("base action");
+  private tool: BaseTool;
 
   constructor(
-    private drawAreaService: DrawAreaService,
-    private deps: ToolDependecies
+    private deps: ToolDependencies
   ) { }
 
-  setAction(action: Function) {
-    this.action = action;
+  setAction(tool: BaseTool) {
+    this.tool = tool;
   }
 
   execute(e: any): void {
-    this.action(this.drawAreaService.context, e, this.deps);
+    this.tool.execute(e);
   }
 }
