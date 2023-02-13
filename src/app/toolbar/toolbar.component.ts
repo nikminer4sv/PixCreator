@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { AlphaChannel, OutputFormat } from 'ngx-color-picker';
 import { ToolService } from '../services/tool.service';
 import { BaseTool } from './tools/base-tool';
 import { ToolDependencies } from './tools/tool-dependencies';
@@ -11,8 +12,10 @@ import { ToolFactory } from './tools/tool-factory';
 })
 export class ToolbarComponent implements OnInit {
 
-  @Input() color: string = "white";
+  @Input() color: string = "rgba(255,255,255,1)";
   toolsArray: BaseTool[] = [];
+  rgba: OutputFormat = "rgba";
+  alphaChannelValue: AlphaChannel = "always";
 
   constructor(
     private deps: ToolDependencies,
@@ -21,9 +24,9 @@ export class ToolbarComponent implements OnInit {
 
   ngOnInit(): void {
     this.deps.colorService.color = this.color;
-
     let toolFactory: ToolFactory = new ToolFactory(this.deps);
     this.toolsArray = toolFactory.getToolsArray();
+    this.deps.colorService.color$.subscribe(color => this.color = color);
   }
 
   changeColor(e: any) {

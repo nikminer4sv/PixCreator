@@ -1,4 +1,14 @@
 <div id="toolbar" class="d-flex flex-column">
-    <input (colorPickerChange)="changeColor($event)" [(colorPicker)]="color" [style.background]="color" style="height: 200px;width: 100%;"/>
-    <button class="btn btn-warning" *ngFor="let item of toolsArray" (click)="this.setTool(item)">{{item.title}}</button>
+    <input 
+        [cpOutputFormat]='rgba' 
+        [cpSaveClickOutside]='true'
+        [cpAlphaChannel]='alphaChannelValue'
+        (colorPickerChange)="changeColor($event)" 
+        [(colorPicker)]="color" 
+        [style.background]="color" 
+        style="height: 200px;width: 100%;"
+    />
+    <div class="tools d-flex justify-content-evenly">
+        <fa-icon [icon]="item.icon" *ngFor="let item of toolsArray" (click)="this.setTool(item)" style="color: white"></fa-icon>
+    </div>
 </div>

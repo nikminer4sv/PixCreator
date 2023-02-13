@@ -6,15 +6,19 @@ import { BehaviorSubject, Observable } from 'rxjs';
 })
 export class ColorService {
 
-  private _color = "white"
+  private _color: BehaviorSubject<string> = new BehaviorSubject<string>("rgba(255,255,255,1)");
   constructor() { }
 
   set color(color: string) {
-    this._color = color;
+    this._color.next(color);
   }
 
-  get color(): string{
-    return this._color;
+  get color$(): Observable<string>{
+    return this._color.asObservable();
+  }
+
+  get color(): string {
+    return this._color.getValue();
   }
 
 }

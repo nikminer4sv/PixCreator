@@ -1,5 +1,6 @@
 
 import { BaseTool } from "./base-tool";
+import { ColorPickerTool } from "./color-picker-tool";
 import { EraseTool } from "./erase-tool";
 import { FillTool } from "./fill-tool";
 import { PaintTool } from "./paint-tool";
@@ -25,11 +26,16 @@ export class ToolFactory {
         return new FillTool(this.deps);
     }
 
+    createColorPicker(): BaseTool {
+        return new ColorPickerTool(this.deps);
+    }
+
     getToolsArray(): BaseTool[] {
         let list = []
         list.push(this.createPaintTool());
         list.push(this.createEraseTool());
         list.push(this.createFillTool());
+        list.push(this.createColorPicker());
         return list;
     }
 

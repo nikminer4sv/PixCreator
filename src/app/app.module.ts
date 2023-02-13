@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { DrawAreaComponent } from './draw-area/draw-area.component';
 import { ToolbarComponent } from './toolbar/toolbar.component';
 import { ToolDependencies } from './toolbar/tools/tool-dependencies';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { ToolDependencies } from './toolbar/tools/tool-dependencies';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    ColorPickerModule
+    ColorPickerModule,
+    FontAwesomeModule
   ],
   providers: [ToolDependencies],
   bootstrap: [AppComponent]

@@ -1,14 +1,39 @@
 #toolbar {
     height: 750px;
     width: 300px;
-    background-color: black;
+    background-color: #1e1e1e;
+    border: 2px solid black;
+    box-sizing: border-box;
 }
 
-#toolbar * {
-    margin-bottom: 10px;
+#toolbar input {
+    margin-bottom: 14px;
+    border-bottom: 2px solid black;
+    box-sizing: border-box;
 }
 
-button {
-    border-radius: 0;
+.tools {
+    flex-wrap: wrap;
+}
+
+.tools fa-icon {
+    margin-bottom: 14px;
+}
+
+fa-icon {
     font-size: 30px;
+    display: inline-block;
+    width: 80px;
+    height: 80px;
+    border: 1px solid white;
+    padding: 5px;
+    color: white;
+    line-height: 70px;
+    text-align: center;
+    transition: 0.3s;
+}
+
+fa-icon:hover {
+    background-color: rgb(255, 85, 85);
+    transition: 0.3s;
 }
