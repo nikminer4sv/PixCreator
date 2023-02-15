@@ -9,6 +9,6 @@
         style="height: 200px;width: 100%;"
     />
     <div class="tools d-flex justify-content-evenly">
-        <fa-icon [icon]="item.icon" *ngFor="let item of toolsArray" (click)="this.setTool(item)" style="color: white"></fa-icon>
+        <fa-icon id="{{i}}" [icon]="item.icon" *ngFor="let item of toolsArray; let i = index;" (click)="this.toolClickAction(item, i);" style="color: white"></fa-icon>
     </div>
 </div>

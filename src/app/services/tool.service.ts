@@ -17,7 +17,7 @@ export class ToolService {
     this.tool = tool;
   }
 
-  execute(e: any): void {
+  execute(e: MouseEvent): void {
     this.tool.execute(e);
   }
 }

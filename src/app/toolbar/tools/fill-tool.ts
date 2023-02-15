@@ -8,13 +8,13 @@ export class FillTool extends BaseTool {
     constructor(deps: ToolDependencies) {
         super(deps);   
         this.icon = faFillDrip;
+        this.shortcut = "b";
     }
 
-    public execute(e: any): void {
+    public execute(e: MouseEvent): void {
         let coords: Coords = calculateRectangleCoords(e.offsetX, e.offsetY);
         let imageData = this.deps.drawAreaService.context.getImageData(coords.x, coords.y, 1, 1).data;
         let str = `rgba(${imageData[0]},${imageData[1]},${imageData[2]},${imageData[3] / 255})`;  
-        console.log(str + " " + this.deps.colorService.color)
         if (str != this.deps.colorService.color)
             this.fillArea(this.deps.drawAreaService.context, calculateRectangleCoords(e.offsetX, e.offsetY), str, this.deps.colorService.color);
     }

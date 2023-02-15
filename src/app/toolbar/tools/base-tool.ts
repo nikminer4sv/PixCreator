@@ -5,10 +5,11 @@ export abstract class BaseTool {
 
     protected deps: ToolDependencies;
     public icon: IconDefinition;
+    public shortcut: string;
 
     constructor(deps: ToolDependencies) {
         this.deps = deps;
     }
 
-    public abstract execute(e: any): void;
+    public abstract execute(e: MouseEvent): void;
 }

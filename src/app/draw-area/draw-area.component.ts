@@ -29,7 +29,7 @@ export class DrawAreaComponent implements OnInit {
       this.hoverCtx = hoverCtx;
       this.drawAreaService.context = ctx;
     } else {
-      console.log("canvas error");
+      console.error("canvas error");
     }
   }
 

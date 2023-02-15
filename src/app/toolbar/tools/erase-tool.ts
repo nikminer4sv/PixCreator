@@ -8,9 +8,10 @@ export class EraseTool extends BaseTool {
     constructor(deps: ToolDependencies) {
         super(deps); 
         this.icon = faEraser;  
+        this.shortcut = "e";
     }
 
-    public execute(e: any): void {
+    public execute(e: MouseEvent): void {
         let coords: Coords = calculateRectangleCoords(e.offsetX, e.offsetY);
         this.deps.drawAreaService.context.clearRect(coords.x, coords.y, 50, 50);
     }

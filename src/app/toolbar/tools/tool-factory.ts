@@ -35,7 +35,7 @@ export class ToolFactory {
         list.push(this.createPaintTool());
         list.push(this.createEraseTool());
         list.push(this.createFillTool());
-        list.push(this.createColorPicker());
+        list.push(this.createColorPicker()); 
         return list;
     }
 

@@ -9,9 +9,10 @@ export class PaintTool extends BaseTool {
     constructor(deps: ToolDependencies) {
         super(deps);   
         this.icon = faPen;
+        this.shortcut = "p";
     }
 
-    public execute(e: any): void {
+    public execute(e: MouseEvent): void {
         let coords: Coords = calculateRectangleCoords(e.offsetX, e.offsetY);
         drawRectangle(this.deps.drawAreaService.context, coords.x, coords.y, 50, 50, this.deps.colorService.color);
     }
