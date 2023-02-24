@@ -1,11 +1,38 @@
-.container-fluid {
-    background-color: #A0A0A0;
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  background-color: #333;
+  height: 80px;
+  line-height: 80px;
 }
 
-#toolbar {
-    position: absolute;
-    left: 0;
-    top: 50%;
-    transform: translate(0, -50%);
-    z-index: 999;
+li {
+  float: left;
+}
+
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 0 16px;
+  text-decoration: none;
+  font-size: 25px;
+}
+
+li a:hover {
+  background-color: #111;
+}
+
+.active {
+  background-color: #04AA6D;
+}
+
+.container-fluid {
+  height: calc(100vh - 80px);
+  background-color: gray;
+}
+
+.container {
+  height: calc(100vh - 80px);
 }

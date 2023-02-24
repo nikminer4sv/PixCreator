@@ -1,1 +1,12 @@
-/* You can add global styles to this file, and also import other style files */
+@import '~normalize.css';
+
+noscript {
+    text-align: center;
+    height: 100vh;
+    display: block;
+
+    h1 {
+        line-height: 100vh;
+        font-size: 60px;
+    }
+}

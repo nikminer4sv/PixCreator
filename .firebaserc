@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "pixcreator-66c34": {
+      "hosting": {
+        "PixCreator": [
+          "pixcreator"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "pixcreator-66c34"
+  }
+}

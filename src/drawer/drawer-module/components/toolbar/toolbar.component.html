@@ -1,0 +1,15 @@
+<div id="toolbar" class="d-flex flex-column">
+    <input 
+        [cpOutputFormat]='rgba' 
+        [cpSaveClickOutside]='true'
+        [cpAlphaChannel]='alphaChannelValue'
+        (colorPickerChange)="changeColor($event)" 
+        [(colorPicker)]="color" 
+        [style.background]="color" 
+        style="height: 200px;width: 100%;"
+        readonly="readonly"
+    />
+    <div class="tools d-flex justify-content-evenly">
+        <fa-icon title="{{item.description}} ({{item.shortcut}})" class="shortcut-tooltip" id="{{i}}" [icon]="item.icon" *ngFor="let item of toolsArray; let i = index;" (click)="this.toolClickAction(item, i);"></fa-icon>
+    </div>
+</div>

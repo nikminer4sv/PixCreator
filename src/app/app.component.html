@@ -1,6 +1,7 @@
+<ul>
+  <li><a class="active" routerLink="/">Home</a></li>
+  <li><a routerLink="/drawer">Drawer</a></li>
+</ul>
 <div class="container-fluid">
-  <app-toolbar id="toolbar"></app-toolbar>
-  <div class="container d-flex justify-content-center align-items-center" style="height: 100vh;">
-    <app-draw-area></app-draw-area>
-  </div>
+    <router-outlet></router-outlet>
 </div>
