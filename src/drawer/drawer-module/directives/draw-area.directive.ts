@@ -1,4 +1,4 @@
-import { Directive, HostListener, ElementRef  } from '@angular/core';
+import { Directive, HostListener } from '@angular/core';
 import { ColorService } from '../services/color.service';
 import { DrawAreaService } from '../services/draw-area.service';
 import { ToolService } from '../services/tool.service';
@@ -18,9 +18,10 @@ export class DrawAreaDirective {
   private mouseCondition = false;
   private currentXCell: number;
   private currentYCell: number;
-  @HostListener('mousemove', ['$event']) onMouseMove(e: any) {
-    if (e.target.id === "hover-layer") {
-      let coords: Coords = calculateRectangleCoords(e.offsetX, e.offsetY, this.drawAreaService.cellSize);
+  @HostListener('mousemove', ['$event']) onMouseMove(e: MouseEvent) {
+    const target = e.target as HTMLElement;
+    if (target.id === "hover-layer") {
+      const coords: Coords = calculateRectangleCoords(e.offsetX, e.offsetY, this.drawAreaService.cellSize);
       if (this.currentXCell != coords.x || this.currentYCell != coords.y) {
         this.currentXCell = coords.x;
         this.currentYCell = coords.y;
@@ -33,14 +34,14 @@ export class DrawAreaDirective {
     }
   }
 
-  @HostListener('mousedown', ['$event']) onMouseDown(e: any) {
-    if (e.target.id === "hover-layer") {
+  @HostListener('mousedown', ['$event']) onMouseDown(e: MouseEvent) {
+    if ((e.target as HTMLElement).id === "hover-layer") {
       this.mouseCondition = true;
       this.toolService.execute(e);
     }
   }
 
-  @HostListener('mouseup', ['$event']) onMouseUp(e: any) {
+  @HostListener('mouseup', ['$event']) onMouseUp() {
     this.mouseCondition = false;
   }
 

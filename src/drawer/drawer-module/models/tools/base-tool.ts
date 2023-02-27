@@ -6,8 +6,6 @@ export abstract class BaseTool {
     public shortcut: string;
     public description: string;
 
-    constructor() {}
-
     public abstract execute(e: MouseEvent): void;
 
 }

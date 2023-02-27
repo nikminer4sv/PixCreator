@@ -16,12 +16,12 @@ export class ToolbarComponent implements OnInit {
   @HostListener('window:keyup', ['$event'])
   keyEvent(event: KeyboardEvent) {
     if (this.shortcuts.includes(event.key, 0)) {
-      let index = this.shortcuts.indexOf(event.key);
+      const index = this.shortcuts.indexOf(event.key);
       this.toolClickAction(this.toolsArray[index], index);
     }
   }
 
-  @Input() color: string = "rgba(255,255,255,1)";
+  @Input() color = "rgba(255,255,255,1)";
   shortcuts: string[] = [];
   toolsArray: BaseTool[] = [];
   rgba: OutputFormat = "rgba";
@@ -35,19 +35,19 @@ export class ToolbarComponent implements OnInit {
 
   ngOnInit(): void {
     this.colorService.color = this.color;
-    let toolFactory: ToolFactory = new ToolFactory(this.colorService, this.drawAreaService);
+    const toolFactory: ToolFactory = new ToolFactory(this.colorService, this.drawAreaService);
     this.toolsArray = toolFactory.getToolsArray();
     this.colorService.color$.subscribe(color => this.color = color);
 
-    for (let tool of this.toolsArray)
+    for (const tool of this.toolsArray)
       this.shortcuts.push(tool.shortcut);
   }
 
-  changeColor(e: any) {
+  changeColor(): void{
     this.colorService.color = this.color;
   }
 
-  toolClickAction(tool: BaseTool, id: any) {
+  toolClickAction(tool: BaseTool, id: number) {
     this.toolService.setAction(tool);
     this.updateChoose(id);
   }
@@ -56,13 +56,13 @@ export class ToolbarComponent implements OnInit {
     this.toolService.setAction(tool);
   }
 
-  private choosed: any = undefined;
-  updateChoose(id: any) {
+  private choosed: number | undefined = undefined;
+  updateChoose(id: number) {
     if (this.choosed != undefined) {
-      let lastTool = document.getElementById(this.choosed);
+      const lastTool = document.getElementById(this.choosed?.toString());
       lastTool?.classList.remove("active");
     }
-    let element = document.getElementById(id);
+    const element = document.getElementById(id.toString());
     element?.classList.add("active");
     this.choosed = id;
   }

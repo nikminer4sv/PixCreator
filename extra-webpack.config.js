@@ -31,6 +31,5 @@ module.exports = (config) => {
       parallel: true,
     }));
   }
-  console.log(config)
   return config;
 }

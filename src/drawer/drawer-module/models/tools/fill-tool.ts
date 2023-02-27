@@ -1,7 +1,7 @@
 import { faFillDrip } from "@fortawesome/free-solid-svg-icons";
 import { ColorService } from "src/drawer/drawer-module/services/color.service";
 import { DrawAreaService } from "src/drawer/drawer-module/services/draw-area.service";
-import { calculateRectangleCoords, Coords, drawRectangle } from "src/drawer/drawer-module/utils/canvas-utils";
+import { calculateRectangleCoords, Coords } from "src/drawer/drawer-module/utils/canvas-utils";
 import { BaseTool } from "./base-tool";
 
 export class FillTool extends BaseTool {
@@ -17,9 +17,9 @@ export class FillTool extends BaseTool {
     }
 
     public execute(e: MouseEvent): void {
-        let coords: Coords = calculateRectangleCoords(e.offsetX, e.offsetY, this.drawAreaService.cellSize);
-        let imageData = this.drawAreaService.context.getImageData(coords.x, coords.y, 1, 1).data;
-        let str = `rgba(${imageData[0]},${imageData[1]},${imageData[2]},${imageData[3] / 255})`;
+        const coords: Coords = calculateRectangleCoords(e.offsetX, e.offsetY, this.drawAreaService.cellSize);
+        const imageData = this.drawAreaService.context.getImageData(coords.x, coords.y, 1, 1).data;
+        const str = `rgba(${imageData[0]},${imageData[1]},${imageData[2]},${imageData[3] / 255})`;
         if (str != this.colorService.color)
             this.fillArea(this.drawAreaService.context, calculateRectangleCoords(e.offsetX, e.offsetY, this.drawAreaService.cellSize), str, this.colorService.color);
     }
@@ -35,29 +35,29 @@ export class FillTool extends BaseTool {
         await this.sleep(40);
 
         if (currentPosition.x - this.drawAreaService.cellSize >= 0) {
-            let imageData = ctx.getImageData(currentPosition.x - this.drawAreaService.cellSize, currentPosition.y, 1, 1).data;
-            let str = `rgba(${imageData[0]},${imageData[1]},${imageData[2]},${imageData[3] / 255})`;
+            const imageData = ctx.getImageData(currentPosition.x - this.drawAreaService.cellSize, currentPosition.y, 1, 1).data;
+            const str = `rgba(${imageData[0]},${imageData[1]},${imageData[2]},${imageData[3] / 255})`;
             if (str == color)
                 this.fillArea(ctx, {x: currentPosition.x - this.drawAreaService.cellSize, y: currentPosition.y}, color, fillColor);
         }
 
         if (currentPosition.x + this.drawAreaService.cellSize <= 901 - this.drawAreaService.cellSize) {
-            let imageData = ctx.getImageData(currentPosition.x + this.drawAreaService.cellSize, currentPosition.y, 1, 1).data;
-            let str = `rgba(${imageData[0]},${imageData[1]},${imageData[2]},${imageData[3] / 255})`;
+            const imageData = ctx.getImageData(currentPosition.x + this.drawAreaService.cellSize, currentPosition.y, 1, 1).data;
+            const str = `rgba(${imageData[0]},${imageData[1]},${imageData[2]},${imageData[3] / 255})`;
             if (str == color)
                 this.fillArea(ctx, {x: currentPosition.x + this.drawAreaService.cellSize, y: currentPosition.y}, color, fillColor);
         }
 
         if (currentPosition.y - this.drawAreaService.cellSize >= 0) {
-            let imageData = ctx.getImageData(currentPosition.x , currentPosition.y - this.drawAreaService.cellSize, 1, 1).data;
-            let str = `rgba(${imageData[0]},${imageData[1]},${imageData[2]},${imageData[3] / 255})`;
+            const imageData = ctx.getImageData(currentPosition.x , currentPosition.y - this.drawAreaService.cellSize, 1, 1).data;
+            const str = `rgba(${imageData[0]},${imageData[1]},${imageData[2]},${imageData[3] / 255})`;
             if (str == color)
                 this.fillArea(ctx, {x: currentPosition.x, y: currentPosition.y - this.drawAreaService.cellSize}, color, fillColor);
         }
 
         if (currentPosition.y + this.drawAreaService.cellSize <= 901 - this.drawAreaService.cellSize) {
-            let imageData = ctx.getImageData(currentPosition.x, currentPosition.y + this.drawAreaService.cellSize, 1, 1).data;
-            let str = `rgba(${imageData[0]},${imageData[1]},${imageData[2]},${imageData[3] / 255})`;
+            const imageData = ctx.getImageData(currentPosition.x, currentPosition.y + this.drawAreaService.cellSize, 1, 1).data;
+            const str = `rgba(${imageData[0]},${imageData[1]},${imageData[2]},${imageData[3] / 255})`;
             if (str == color)
                 this.fillArea(ctx, {x: currentPosition.x, y: currentPosition.y + this.drawAreaService.cellSize}, color, fillColor);
         }

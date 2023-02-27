@@ -1,11 +1,11 @@
 <div id="toolbar" class="d-flex flex-column">
-    <input 
-        [cpOutputFormat]='rgba' 
+    <input
+        [cpOutputFormat]='rgba'
         [cpSaveClickOutside]='true'
         [cpAlphaChannel]='alphaChannelValue'
-        (colorPickerChange)="changeColor($event)" 
-        [(colorPicker)]="color" 
-        [style.background]="color" 
+        (colorPickerChange)="changeColor()"
+        [(colorPicker)]="color"
+        [style.background]="color"
         style="height: 200px;width: 100%;"
         readonly="readonly"
     />

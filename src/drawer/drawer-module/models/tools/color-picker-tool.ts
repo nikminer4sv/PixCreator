@@ -1,7 +1,7 @@
 import { faEyeDropper } from "@fortawesome/free-solid-svg-icons";
 import { ColorService } from "src/drawer/drawer-module/services/color.service";
 import { DrawAreaService } from "src/drawer/drawer-module/services/draw-area.service";
-import { calculateRectangleCoords, Coords, drawRectangle } from "src/drawer/drawer-module/utils/canvas-utils";
+import { calculateRectangleCoords, Coords } from "src/drawer/drawer-module/utils/canvas-utils";
 import { BaseTool } from "./base-tool";
 
 export class ColorPickerTool extends BaseTool {
@@ -17,9 +17,9 @@ export class ColorPickerTool extends BaseTool {
     }
 
     public execute(e: MouseEvent): void {
-        let coords: Coords = calculateRectangleCoords(e.offsetX, e.offsetY, this.drawAreaService.cellSize);
-        let imageData = this.drawAreaService.context.getImageData(coords.x, coords.y, 1, 1).data;
-        let str = `rgba(${imageData[0]},${imageData[1]},${imageData[2]},${imageData[3] / 255})`;
+        const coords: Coords = calculateRectangleCoords(e.offsetX, e.offsetY, this.drawAreaService.cellSize);
+        const imageData = this.drawAreaService.context.getImageData(coords.x, coords.y, 1, 1).data;
+        const str = `rgba(${imageData[0]},${imageData[1]},${imageData[2]},${imageData[3] / 255})`;
         this.colorService.color = str;
     }
 

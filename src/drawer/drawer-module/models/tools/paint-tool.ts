@@ -18,7 +18,7 @@ export class PaintTool extends BaseTool {
     }
 
     public execute(e: MouseEvent): void {
-        let coords: Coords = calculateRectangleCoords(e.offsetX, e.offsetY, this.drawAreaService.cellSize);
+        const coords: Coords = calculateRectangleCoords(e.offsetX, e.offsetY, this.drawAreaService.cellSize);
         drawRectangle(this.drawAreaService.context, coords.x, coords.y, this.drawAreaService.cellSize, this.drawAreaService.cellSize, this.colorService.color);
     }
 

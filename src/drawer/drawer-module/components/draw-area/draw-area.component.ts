@@ -17,8 +17,8 @@ export class DrawAreaComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    let ctx = this.paintLayer.nativeElement.getContext('2d');
-    let hoverCtx = this.hoverLayer.nativeElement.getContext('2d');
+    const ctx = this.paintLayer.nativeElement.getContext('2d');
+    const hoverCtx = this.hoverLayer.nativeElement.getContext('2d');
     if (ctx != null && hoverCtx != null) {
       this.drawAreaService.hoverContext = hoverCtx;
       this.drawAreaService.context = ctx;

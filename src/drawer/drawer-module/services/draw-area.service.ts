@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
 })
 export class DrawAreaService {
 
-  private _cellSize: number = 25;
+  private _cellSize = 25;
   private ctx: CanvasRenderingContext2D;
   private hoverCtx: CanvasRenderingContext2D;
 
