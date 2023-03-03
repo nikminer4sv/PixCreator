@@ -3,7 +3,8 @@ const TerserPlugin = require("terser-webpack-plugin")
 const clc = require("cli-color");
 
 module.exports = (config) => {
-  console.log(clc.green("✔ ") + "Building using webpack complete")
+  console.log(clc.bgCyanBright("\nWelcome to the club ") + clc.bgCyanBright(clc.red("BUDDY")));
+  console.log("\n" + clc.green("✔ ") + "Building using webpack complete")
   if (config.mode !== "development") {
     config.plugins.push(new CompressionPlugin());
     config.plugins.push(new TerserPlugin({

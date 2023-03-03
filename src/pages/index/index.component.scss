@@ -7,6 +7,6 @@ h1 {
   display: flex!important;
   flex-direction: column;
   justify-content: center;
-  height: 100%;
+  height: calc(100vh - 80px);
   color: white;
 }

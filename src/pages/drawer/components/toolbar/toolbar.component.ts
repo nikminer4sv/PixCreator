@@ -21,7 +21,8 @@ export class ToolbarComponent implements OnInit {
     }
   }
 
-  @Input() color = "rgba(255,255,255,1)";
+  @Input()
+  color = "rgba(255,255,255,1)";
   shortcuts: string[] = [];
   toolsArray: BaseTool[] = [];
   rgba: OutputFormat = "rgba";

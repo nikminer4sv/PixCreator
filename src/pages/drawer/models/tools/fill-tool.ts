@@ -1,7 +1,7 @@
 import { faFillDrip } from "@fortawesome/free-solid-svg-icons";
-import { ColorService } from "src/drawer/drawer-module/services/color.service";
-import { DrawAreaService } from "src/drawer/drawer-module/services/draw-area.service";
-import { calculateRectangleCoords, Coords } from "src/drawer/drawer-module/utils/canvas-utils";
+import { ColorService } from "src/pages/drawer/services/color.service";
+import { DrawAreaService } from "src/pages/drawer/services/draw-area.service";
+import { calculateRectangleCoords, Coords } from "src/pages/drawer/utils/canvas-utils";
 import { BaseTool } from "./base-tool";
 
 export class FillTool extends BaseTool {

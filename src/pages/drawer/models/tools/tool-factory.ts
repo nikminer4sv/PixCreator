@@ -1,6 +1,6 @@
 
-import { ColorService } from "src/drawer/drawer-module/services/color.service";
-import { DrawAreaService } from "src/drawer/drawer-module/services/draw-area.service";
+import { ColorService } from "src/pages/drawer/services/color.service";
+import { DrawAreaService } from "src/pages/drawer/services/draw-area.service";
 import { BaseTool } from "./base-tool";
 import { ColorPickerTool } from "./color-picker-tool";
 import { EraseTool } from "./erase-tool";

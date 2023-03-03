@@ -1,0 +1,15 @@
+.card-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  padding-top: 30px;
+  flex-wrap: wrap;
+
+  app-card {
+    margin-bottom: 30px;
+  }
+}
+
+img {
+  width: 100%;
+}

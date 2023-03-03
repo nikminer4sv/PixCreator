@@ -1,6 +1,6 @@
 import { faEraser } from "@fortawesome/free-solid-svg-icons";
-import { DrawAreaService } from "src/drawer/drawer-module/services/draw-area.service";
-import { calculateRectangleCoords, Coords } from "src/drawer/drawer-module/utils/canvas-utils";
+import { DrawAreaService } from "src/pages/drawer/services/draw-area.service";
+import { calculateRectangleCoords, Coords } from "src/pages/drawer/utils/canvas-utils";
 import { BaseTool } from "./base-tool";
 
 export class EraseTool extends BaseTool {
