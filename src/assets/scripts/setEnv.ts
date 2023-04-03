@@ -64,5 +64,5 @@ const environmentFileContent = `
 `;
 
 writeFileUsingFS(targetPath, environmentFileContent); // appending data into the target file
-
+writeFileUsingFS('./src/environments/environment.ts', environmentFileContent);
 /* tslint:enable */
