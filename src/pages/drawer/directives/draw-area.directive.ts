@@ -1,6 +1,6 @@
 import { Directive, HostListener } from '@angular/core';
 import { ColorService } from '../services/color.service';
-import { DrawAreaService } from '../services/draw-area.service';
+import { DrawAreaService } from '../../../shared/services/draw-area.service';
 import { ToolService } from '../services/tool.service';
 import { calculateRectangleCoords, Coords, drawRectangle } from '../utils/canvas-utils';
 

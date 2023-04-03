@@ -1,33 +1,31 @@
 import {AfterViewInit, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {Card} from "./models/card";
 import {CardComponent} from "./components/card/card.component";
+import firebase from "firebase/compat";
+import firestore = firebase.firestore;
+import {FirestoreService} from "./services/firestore.service";
+import {
+  convertNodeSourceSpanToLoc
+} from "@angular-eslint/template-parser/dist/template-parser/src/convert-source-span-to-loc";
 
 @Component({
   selector: 'app-gallery',
   templateUrl: './gallery.component.html',
   styleUrls: ['./gallery.component.scss']
 })
-export class GalleryComponent {
+export class GalleryComponent implements OnInit{
 
-  cards: Card[] = [
-    {title: "1", content: "23112dqwqd"},
-    {title: "2", content: "23112dqwqd"},
-    {title: "3", content: "23112dqwqd"},
-    {title: "4", content: "23112dqwqd"},
-    {title: "5", content: "23112dqwqd"},
-    {title: "6", content: "23112dqwqd"},
-    {title: "7", content: "23112dqwqd"},
-    {title: "8", content: "23112dqwqd"},
-    {title: "9", content: "23112dqwqd"},
-    {title: "10", content: "23112dqwqd"},
-    {title: "11", content: "23112dqwqd"},
-    {title: "12", content: "23112dqwqd"},
-    {title: "13", content: "23112dqwqd"},
-    {title: "14", content: "23112dqwqd"},
-    {title: "15", content: "23112dqwqd"},
-    {title: "16", content: "23112dqwqd"},
-  ]
+  public cards: Card[];
 
-  public cardsOnPage: number = 8;
+  constructor(
+    private db: FirestoreService,
+  ) {
+  }
+
+  ngOnInit(): void {
+    this.db.getCards().subscribe(cards => {this.cards = cards.reverse()});
+  }
+
+
 
 }

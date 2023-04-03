@@ -2,4 +2,35 @@
   <li><a class="active" routerLink="/">Home</a></li>
   <li><a routerLink="/drawer">Drawer</a></li>
   <li><a routerLink="/gallery">Gallery</a></li>
+  <li *ngIf="this.router.url == '/drawer'"><a href="#" data-bs-toggle="modal" data-bs-target="#saveModal" (click)="setImage()">Push to gallery</a></li>
 </ul>
+<app-modal #modalWindow>
+
+  <div class="modal-header">
+    <h1 class="modal-title" id="exampleModalLabel">Push to gallery</h1>
+  </div>
+
+  <!-- MAIN CONTENT  -->
+  <div class="modal-body">
+    <div class="form-group row d-flex" style="justify-content: center; margin-bottom: 20px;">
+      <div class="col d-flex" style="vertical-align: middle">
+        <input #titleInput type="text" placeholder="Title" class="form-control form-control-lg d-flex" id="inputTitle" style="font-size: 30px;align-self: center">
+      </div>
+    </div>
+    <div class="image-container">
+      <img #contentImage src="assets/images/background.png" width="100%">
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <button
+    #pushButton
+    type="button"
+    class="btn btn-primary pushButton"
+    (click)="pushToGallery(titleInput.value)"
+    [disabled]="titleInput.value.length < 4 || titleInput.value.length > 20"
+  >
+    <fa-icon *ngIf="this.loadingService.loading == true" [icon]="spinnerIcon" [spin]="true"></fa-icon><span *ngIf="!this.loadingService.loading && this.showButtonText">Push</span>
+  </button>
+
+</app-modal>

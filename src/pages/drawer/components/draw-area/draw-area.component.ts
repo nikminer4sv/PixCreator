@@ -1,5 +1,5 @@
 import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
-import { DrawAreaService } from '../../services/draw-area.service';
+import { DrawAreaService } from '../../../../shared/services/draw-area.service';
 
 @Component({
   selector: 'app-draw-area',

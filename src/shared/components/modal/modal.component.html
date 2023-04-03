@@ -1,0 +1,10 @@
+<div class="modal fade" id="saveModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <button #closeButton type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" style="display: none"></button>
+      <ng-content select=".modal-header"></ng-content>
+      <ng-content select=".modal-body"></ng-content>
+      <ng-content></ng-content>
+    </div>
+  </div>
+</div>

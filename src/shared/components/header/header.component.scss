@@ -1,3 +1,5 @@
+$primary-color: #04AA6D;
+
 ul {
   list-style-type: none;
   margin: 0;
@@ -9,6 +11,10 @@ ul {
 
 li {
   float: left;
+}
+
+a {
+  color: white!important;
 }
 
 li a {
@@ -27,3 +33,46 @@ li a:hover {
 .active {
   background-color: #04AA6D;
 }
+
+.pushButton {
+  width: 100%;
+  background-color: $primary-color;
+  color: white;
+  font-size: 40px;
+  border: none;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  height: 80px;
+}
+
+.pushButton[disabled] {
+  background-color: #b3b3b3;
+}
+
+.pushButton:hover {
+  background-color: black;
+}
+
+img {
+  background-image: url("../../../assets/images/background.png");
+}
+
+.image-container {
+  border: 1.333px solid rgb(206, 212, 218);
+  border-radius: 4px;
+}
+
+.modal-header {
+  justify-content: center;
+  background-color: #04AA6D;
+  text-transform: uppercase;
+  color: white;;
+  flex-direction: column;
+}
+
+.item {
+  font-size: 50px;
+}
+
+
+

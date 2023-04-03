@@ -1,4 +1,4 @@
 export interface Card {
+  imageUrl: string,
   title: string,
-  content: string,
 }

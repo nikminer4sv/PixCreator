@@ -1,5 +1,5 @@
 import { faEraser } from "@fortawesome/free-solid-svg-icons";
-import { DrawAreaService } from "src/pages/drawer/services/draw-area.service";
+import { DrawAreaService } from "src/shared/services/draw-area.service";
 import { calculateRectangleCoords, Coords } from "src/pages/drawer/utils/canvas-utils";
 import { BaseTool } from "./base-tool";
 

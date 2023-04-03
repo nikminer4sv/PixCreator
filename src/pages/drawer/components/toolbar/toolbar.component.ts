@@ -1,7 +1,7 @@
 import { Component, HostListener, Input, OnInit } from '@angular/core';
 import { AlphaChannel, OutputFormat } from 'ngx-color-picker';
 import { ColorService } from '../../services/color.service';
-import { DrawAreaService } from '../../services/draw-area.service';
+import { DrawAreaService } from '../../../../shared/services/draw-area.service';
 import { ToolService } from '../../services/tool.service';
 import { BaseTool } from '../../models/tools/base-tool';
 import { ToolFactory } from '../../models/tools/tool-factory';

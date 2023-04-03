@@ -1,6 +1,6 @@
 
 import { ColorService } from "src/pages/drawer/services/color.service";
-import { DrawAreaService } from "src/pages/drawer/services/draw-area.service";
+import { DrawAreaService } from "src/shared/services/draw-area.service";
 import { BaseTool } from "./base-tool";
 import { ColorPickerTool } from "./color-picker-tool";
 import { EraseTool } from "./erase-tool";
@@ -32,10 +32,10 @@ export class ToolFactory {
 
     getToolsArray(): BaseTool[] {
        return [
-        this.createPaintTool(),
-        this.createEraseTool(),
-        this.createFillTool(),
-        this.createColorPicker()
+          this.createPaintTool(),
+          this.createEraseTool(),
+          this.createFillTool(),
+          this.createColorPicker(),
        ]
     }
 
