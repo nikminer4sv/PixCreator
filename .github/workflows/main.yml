@@ -7,35 +7,19 @@ on:
     branches: [ main ]
 
 jobs:
-  build:
-    name: Build
+  deploy:
+
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout Repo
-        uses: actions/checkout@v2
-      - name: Setup node
-        uses: actions/setup-node@master
+      - uses: actions/checkout@master
+      - uses: actions/setup-node@master
         with:
           node-version: '18.x'
-      - name: Install Dependencies
-        run: npm install
-      - name: Build
-        run: npm run build --prod
-      - name: Archive Production Artifact
-        uses: actions/upload-artifact@master
+      - run: npm install
+      - run: npm run build:prod
+      - uses: w9jds/firebase-action@master
         with:
-          name: public
-          path: ./public
-  deploy:
-    name: Deploy to firebase
-    runs-on: ubuntu-latest
-    needs: [build]
-    steps:
-      - name: Deploy angular app to Firebase
-        uses: w9jds/firebase-action@master
-        with:
-          name: public
-          path: ./public
           args: deploy --only hosting
         env:
-          FIREBASE_TOKEN: ${{ secrets.firebase_token }}
+          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
