@@ -31,14 +31,6 @@ jobs:
     runs-on: ubuntu-latest
     needs: [build]
     steps:
-      - uses: actions/checkout@master
-      - uses: actions/setup-node@master
-        with:
-          node-version: '18.x'
-      - name: Install Dependencies
-        run: npm install
-      - name: Build the app artifact for prod
-        run: npm run build --prod
       - name: Deploy angular app to Firebase
         uses: w9jds/firebase-action@master
         with:
