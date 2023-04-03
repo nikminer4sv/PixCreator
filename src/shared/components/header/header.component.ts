@@ -27,8 +27,8 @@ export class HeaderComponent {
 
   public spinnerIcon: IconDefinition = faSpinner
 
-  public isLoading: boolean = false;
-  public showButtonText: boolean = true;
+  public isLoading = false;
+  public showButtonText = true;
 
   constructor(
     public router: Router,
@@ -46,14 +46,14 @@ export class HeaderComponent {
     this.loadingService.loading = true;
     this.pushButton.nativeElement.style.paddingTop = "15px";
     this.fb.pushToGallery(title).subscribe({
-      next:async (data: any) => {
+      next:async () => {
         this.pushButton.nativeElement.style.paddingTop = "0";
         this.modalWindow.hide();
         await this.sleep(500);
         this.loadingService.loading = false;
         this.titleInput.nativeElement.value = "";
       },
-      error: async error => {
+      error: async () => {
         this.pushButton.nativeElement.style.paddingTop = "0";
         this.loadingService.loading = false;
         const currentColor = this.pushButton.nativeElement.style.backgroundColor;

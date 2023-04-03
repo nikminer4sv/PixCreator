@@ -2,7 +2,7 @@
   <li><a class="active" routerLink="/">Home</a></li>
   <li><a routerLink="/drawer">Drawer</a></li>
   <li><a routerLink="/gallery">Gallery</a></li>
-  <li *ngIf="this.router.url == '/drawer'"><a href="#" data-bs-toggle="modal" data-bs-target="#saveModal" (click)="setImage()">Push to gallery</a></li>
+  <li *ngIf="this.router.url === '/drawer'"><a href="#" data-bs-toggle="modal" data-bs-target="#saveModal" (click)="setImage()">Push to gallery</a></li>
 </ul>
 <app-modal #modalWindow>
 
@@ -30,7 +30,7 @@
     (click)="pushToGallery(titleInput.value)"
     [disabled]="titleInput.value.length < 4 || titleInput.value.length > 20"
   >
-    <fa-icon *ngIf="this.loadingService.loading == true" [icon]="spinnerIcon" [spin]="true"></fa-icon><span *ngIf="!this.loadingService.loading && this.showButtonText">Push</span>
+    <fa-icon *ngIf="this.loadingService.loading === true" [icon]="spinnerIcon" [spin]="true"></fa-icon><span *ngIf="!this.loadingService.loading && this.showButtonText">Push</span>
   </button>
 
 </app-modal>

@@ -5,6 +5,6 @@ import { Injectable } from '@angular/core';
 })
 export class LoadingButtonService {
 
-  public loading: boolean = false;
+  public loading = false;
 
 }

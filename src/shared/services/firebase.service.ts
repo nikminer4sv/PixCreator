@@ -23,9 +23,9 @@ export class FirebaseService {
     headers: new HttpHeaders(this.headerDict)
   };
 
-  public pushToGallery(title: string): Observable<any>{
+  public pushToGallery(title: string): Observable<object>{
     const image = dataURLtoBlob(this.drawAreaService.context.canvas.toDataURL());
-    let formData: any = new FormData();
+    const formData = new FormData();
     formData.append("image", image);
     formData.append("title", title);
     return this.http.post("http://pixcreatorpresentation-env.eba-5m7amdfi.us-east-1.elasticbeanstalk.com/gallery", formData, this.requestOptions);
