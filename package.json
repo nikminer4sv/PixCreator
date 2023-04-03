@@ -8,7 +8,8 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "lint": "ng lint",
-    "deploy": "ng deploy"
+    "deploy": "ng deploy",
+    "config": "ts-node ./src/assets/scripts/setEnv.ts"
   },
   "private": true,
   "dependencies": {

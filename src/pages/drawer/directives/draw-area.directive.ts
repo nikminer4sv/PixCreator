@@ -27,7 +27,7 @@ export class DrawAreaDirective {
         this.currentYCell = coords.y;
         this.drawAreaService.hoverContext.clearRect(0, 0, 900, 900);
         drawRectangle(this.drawAreaService.hoverContext, this.currentXCell, this.currentYCell, this.drawAreaService.cellSize, this.drawAreaService.cellSize, this.colorService.hoverColor);
-        if (this.mouseCondition == true) {
+        if (this.mouseCondition === true) {
           this.onMouseDown(e);
         }
       }

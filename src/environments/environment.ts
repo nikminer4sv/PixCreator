@@ -9,6 +9,8 @@ export const environment = {
     authDomain: 'pixcreator-66c34.firebaseapp.com',
     messagingSenderId: '653216671594',
     measurementId: 'G-XNCRS1ET4J',
+    firebase_token: "gg"
   },
-  production: false
+  production: true
 };
+

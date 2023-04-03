@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {environment} from "../../environments/environment";
 
 @Component({
   selector: 'app-index',
@@ -10,4 +11,5 @@ export class IndexComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  protected readonly environment = environment;
 }
