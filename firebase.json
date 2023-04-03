@@ -2,7 +2,7 @@
   "hosting": [
     {
       "target": "PixCreator",
-      "public": "dist/pix-creator",
+      "public": "public",
       "ignore": [
         "**/.*"
       ],
