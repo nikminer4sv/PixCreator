@@ -23,7 +23,7 @@
                 "externals": "replace"
               }
             },
-            "outputPath": "dist/pix-creator",
+            "outputPath": "public",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -136,6 +136,7 @@
   "cli": {
     "schematicCollections": [
       "@angular-eslint/schematics"
-    ]
+    ],
+    "analytics": false
   }
 }
