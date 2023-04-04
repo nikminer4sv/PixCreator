@@ -27,4 +27,3 @@ jobs:
           args: deploy --only hosting
         env:
           FIREBASE_TOKEN: ${{ secrets.firebase_token }}
-          GGWP: ${{ secrets.GGWP}}
