@@ -45,7 +45,6 @@ const targetPath = isProduction
 
 //actual content to be compiled dynamically and pasted into respective environment files
 const environmentFileContent = `
-  //gg
   export const environment = {
   firebase: {
     projectId: '${process.env.PROJECT_ID}',
@@ -59,11 +58,9 @@ const environmentFileContent = `
     measurementId: '${process.env.MEASUREMENT_ID}',
     test: '${process.env.TEST}'
   },
-  production: true
+  production: ${isProduction}
 };
 
 `;
-
-writeFileUsingFS(targetPath, environmentFileContent); // appending data into the target file
-writeFileUsingFS('./src/environments/environment.ts', environmentFileContent);
+writeFileUsingFS(targetPath, environmentFileContent);
 /* tslint:enable */
