@@ -1,4 +1,6 @@
-export const environment = {
+
+  //gg
+  export const environment = {
   firebase: {
     projectId: 'pixcreator-66c34',
     appId: '1:653216671594:web:5ff198a1e99a6bcbe16713',
@@ -9,7 +11,7 @@ export const environment = {
     authDomain: 'pixcreator-66c34.firebaseapp.com',
     messagingSenderId: '653216671594',
     measurementId: 'G-XNCRS1ET4J',
-    GGWP: "gg"
+    test: 'hello from environment ggwp'
   },
   production: true
 };
