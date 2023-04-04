@@ -19,6 +19,8 @@ jobs:
           node-version: '18.x'
       - name: Install Dependencies
         run: npm install
+      - name: Setup env variables
+        run: export GGWP=hellofromenv
       - name: Build the app artifact for prod
         run: npm run build --prod
       - name: Deploy angular app to Firebase
