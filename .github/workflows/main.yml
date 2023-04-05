@@ -15,11 +15,14 @@ jobs:
   Lint:
     runs-on: ubuntu-latest
     steps:
+      - name: Test
+        runs:
+          echo ${{ github.event.repository.name }}
       - name: Cache repository
         uses: actions/cache@v3
         with:
           path: ${{ github.event.repository.name }}
-          key: repo-${{ hashFiles('**/${{ github.event.repository.name }}') }}
+          key: repo-${{ format('{0}', github.event.repository.name) }}
       - name: Get repository code
         uses: actions/checkout@master
       - name: Cache dependencies
@@ -62,7 +65,7 @@ jobs:
         uses: actions/cache@v3
         with:
           path: ${{ github.event.repository.name }}
-          key: repo-${{ hashFiles('**/${{ github.event.repository.name }}') }}
+          key: repo-${{ format('{0}', github.event.repository.name) }}
       - name: Get repository code
         uses: actions/checkout@master
       - name: Cache dependencies
@@ -94,7 +97,7 @@ jobs:
         uses: actions/cache@v3
         with:
           path: ${{ github.event.repository.name }}
-          key: repo-${{ hashFiles('**/${{ github.event.repository.name }}') }}
+          key: repo-${{ format('{0}', github.event.repository.name) }}
       - name: Get repository code
         uses: actions/checkout@master
       - name: Download build
