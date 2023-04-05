@@ -12,18 +12,25 @@ on:
   workflow_dispatch:
 
 jobs:
-  deploy:
-
-    environment: Prod
+  Lint:
     runs-on: ubuntu-latest
-
     steps:
-      - uses: actions/checkout@master
-      - uses: actions/setup-node@master
+      - name: Get repository code
+        uses: actions/checkout@master
+      - name: Cache dependencies
+        uses: actions/cache@v3
         with:
-          node-version: '18.x'
+          path: ~/.npm
+          key: node-modules-${{ hashFile('**/package-lock.json') }}
       - name: Install Dependencies
-        run: npm install
+        run: npm ci
+      - name: Linting code
+        run: npm run lint
+
+  SetupEnvironment:
+    runs-on: ubuntu-latest
+    environment: Prod
+    steps:
       - name: Make env file
         uses: SpicyPizza/create-envfile@v1.3
         with:
@@ -36,8 +43,44 @@ jobs:
           envkey_MESSAGING_SENDER_ID: ${{ vars.MESSAGING_SENDER_ID }}
           envkey_STORAGE_BUCKET: ${{ vars.STORAGE_BUCKET }}
           envkey_TEST: ${{ vars.TEST }}
-      - name: Build the app artifact for prod
+      - name: Upload env file
+        uses: actions/upload-artifact@v3
+        with:
+          name: env-file
+          path: .env
+
+  Build:
+    runs-on: ubuntu-latest
+    needs: [Lint, SetupEnvironment]
+    steps:
+      - name: Get repository code
+        uses: actions/checkout@master
+      - name: Cache dependencies
+        uses: actions/cache@v3
+        with:
+          path: ~/.npm
+          key: node-modules-${{ hashFile('**/package-lock.json') }}
+      - name: Install Dependencies
+        run: npm ci
+      - name: Download env file
+        uses: actions/download-artifact@v3
+        with:
+          name: env-file
+      - name: Build artifact
         run: npm run build --prod
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: build
+          path: public
+
+  Deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download build
+        uses: actions/download-artifact@v3
+        with:
+          name: build
       - name: Deploy angular app to Firebase
         uses: w9jds/firebase-action@master
         with:
