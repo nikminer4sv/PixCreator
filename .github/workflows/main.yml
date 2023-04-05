@@ -57,10 +57,12 @@ jobs:
         uses: actions/checkout@master
       - name: Cache dependencies
         uses: actions/cache@v3
+        id: cache-primes
         with:
           path: node_modules
           key: node-modules-${{ hashFiles('**/package-lock.json') }}
       - name: Install Dependencies
+        if: steps.cache-primes.outputs.cache-hit != 'true'
         run: npm ci
       - name: Download env file
         uses: actions/download-artifact@v3
