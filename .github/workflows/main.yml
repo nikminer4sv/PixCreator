@@ -16,7 +16,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Test
-        runs:
+        run:
           echo ${{ github.event.repository.name }}
       - name: Cache repository
         uses: actions/cache@v3
