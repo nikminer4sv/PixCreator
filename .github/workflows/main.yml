@@ -3,11 +3,11 @@ name: CI/CD
 on:
   push:
     branches: [ main ]
-    path-ignore:
+    paths-ignore:
       - '.github/workflows/*'
   pull_request:
     branches: [ main ]
-    path-ignore:
+    paths-ignore:
       - '.github/workflows/*'
 
 jobs:
