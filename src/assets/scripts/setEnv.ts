@@ -8,6 +8,7 @@ const { argv } = require('yargs');
 require('dotenv').config();
 const environment = argv.environment;
 
+console.log(process.env)
 
 function writeFileUsingFS(targetPath, environmentFileContent) {
   writeFile(targetPath, environmentFileContent, function (err) {
@@ -44,25 +45,22 @@ const targetPath = isProduction
 
 //actual content to be compiled dynamically and pasted into respective environment files
 const environmentFileContent = `
-  //gg
   export const environment = {
   firebase: {
-    projectId: 'pixcreator-66c34',
-    appId: '1:653216671594:web:5ff198a1e99a6bcbe16713',
-    databaseURL: 'https://pixcreator-66c34-default-rtdb.europe-west1.firebasedatabase.app',
-    storageBucket: 'pixcreator-66c34.appspot.com',
-    locationId: 'europe-west6',
-    apiKey: 'AIzaSyB0LZwbTpmKo48GjTqHHJ7PxB1TIJzKNNg',
-    authDomain: 'pixcreator-66c34.firebaseapp.com',
-    messagingSenderId: '653216671594',
-    measurementId: 'G-XNCRS1ET4J',
-    GGWP: ${process.env.GGWP}
+    projectId: '${process.env.PROJECT_ID}',
+    appId: '${process.env.APP_ID}',
+    databaseURL: '${process.env.DATABASE_URL}',
+    storageBucket: '${process.env.STORAGE_BUCKET}',
+    locationId: '${process.env.LOCATION_ID}',
+    apiKey: '${process.env.API_KEY}',
+    authDomain: '${process.env.AUTH_DOMAIN}',
+    messagingSenderId: '${process.env.MESSAGING_SENDER_ID}',
+    measurementId: '${process.env.MEASUREMENT_ID}',
+    test: '${process.env.TEST}'
   },
-  production: true
+  production: ${isProduction}
 };
 
 `;
-
-writeFileUsingFS(targetPath, environmentFileContent); // appending data into the target file
-writeFileUsingFS('./src/environments/environment.ts', environmentFileContent);
+writeFileUsingFS(targetPath, environmentFileContent);
 /* tslint:enable */
