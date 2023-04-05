@@ -84,6 +84,7 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: build
+          path: public
       - name: Deploy angular app to Firebase
         uses: w9jds/firebase-action@master
         with:
