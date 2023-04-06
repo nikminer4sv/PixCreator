@@ -13,7 +13,7 @@ on:
 
 jobs:
   lint:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     steps:
       - name: Get repository code
         uses: actions/checkout@master
@@ -30,7 +30,7 @@ jobs:
         run: npm run lint
 
   setup-environment:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     environment: Prod
     steps:
       - name: Make env file
@@ -52,7 +52,7 @@ jobs:
           path: .env
 
   build:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     needs: [lint, setup-environment]
     steps:
       - name: Get repository code
@@ -79,7 +79,7 @@ jobs:
           path: public
 
   deploy:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     needs: build
     steps:
       - name: Get repository code
