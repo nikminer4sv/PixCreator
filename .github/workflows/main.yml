@@ -13,7 +13,10 @@ on:
 
 jobs:
   lint:
-    runs-on: self-hosted
+    strategy:
+      matrix:
+        os: [ ubuntu-latest, windows-latest ]
+    runs-on: ${{ matrix.os }}
     steps:
       - name: Get repository code
         uses: actions/checkout@master
@@ -30,7 +33,7 @@ jobs:
         run: npm run lint
 
   setup-environment:
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
     environment: Prod
     steps:
       - name: Make env file
@@ -52,7 +55,7 @@ jobs:
           path: .env
 
   build:
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
     needs: [lint, setup-environment]
     steps:
       - name: Get repository code
@@ -79,7 +82,7 @@ jobs:
           path: public
 
   deploy:
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
     needs: build
     steps:
       - name: Get repository code
